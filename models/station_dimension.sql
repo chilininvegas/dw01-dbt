@@ -6,8 +6,8 @@ WITH BIKE as (
         START_STATION_NAME as STATION_NAME,
         START_LAT as STATION_LAT,
         START_LNG as STATION_LNG
-    FROM {{source('demo', 'bike')}}
-    where RIDE_ID != 'ride_id'  -- filter out header row
+    FROM {{ref('stg_bike')}}
+    where RIDE_ID != '"bikeid"'  -- filter out header row
 )
 
 select * FROM BIKE

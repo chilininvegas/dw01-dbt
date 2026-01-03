@@ -9,8 +9,10 @@ WITH CTE AS (
         {{day_type('DAY_NAME')}} AS DAY_TYPE,
         MONTHNAME(TIMESTAMP_STARTED_AT) AS MONTH_NAME,
         {{get_season('MONTH_NAME')}} AS SEASON
-    FROM {{source('demo', 'bike')}}
-    WHERE STARTED_AT != 'started_at'  -- filter out header row
+    FROM {{ref('stg_bike')}}
+    where STARTED_AT != 'started_at' and STARTED_AT != '"started_at"'  -- filter out header row
 )
 
 SELECT * FROM CTE
+
+
