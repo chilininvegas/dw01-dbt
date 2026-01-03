@@ -10,7 +10,7 @@ WITH CTE AS (
         MONTHNAME(TIMESTAMP_STARTED_AT) AS MONTH_NAME,
         {{get_season('MONTH_NAME')}} AS SEASON
     FROM {{source('demo', 'bike')}}
-    WHERE STARTED_AT != 'started_at'  -- filter out first row
+    WHERE STARTED_AT != 'started_at'  -- filter out header row
 )
 
 SELECT * FROM CTE
